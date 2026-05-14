@@ -312,21 +312,9 @@
             position: relative;
         }
         
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 20px;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(to bottom, var(--primary), var(--secondary), var(--accent));
-            border-radius: 3px;
-        }
-        
         .timeline-item {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 35px;
+            display: block;
+            margin-bottom: 25px;
             position: relative;
         }
         
@@ -334,53 +322,31 @@
             margin-bottom: 0;
         }
         
-        .time-marker {
-            flex-shrink: 0;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 0.8rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .time-marker.morning { background: linear-gradient(135deg, #FF4757, #FF6B81); }
-        .time-marker.afternoon { background: linear-gradient(135deg, #FFA502, #FFBE76); }
-        .time-marker.evening { background: linear-gradient(135deg, #2ED573, #7BED9F); }
-        
-        /* 时间标签 - 早午晚颜色标识 */
+        /* 时间标签 - 早午晚颜色标识（标题旁） */
         .time-badge {
             display: inline-block;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-left: 8px;
+            padding: 4px 14px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-right: 10px;
             vertical-align: middle;
+            color: white;
+            letter-spacing: 1px;
         }
         
         .time-badge.morning {
             background: linear-gradient(135deg, #FF4757, #FF6B81);
-            color: white;
         }
         
         .time-badge.afternoon {
             background: linear-gradient(135deg, #FFA502, #FFBE76);
-            color: white;
         }
-        
         .time-badge.evening {
             background: linear-gradient(135deg, #2ED573, #7BED9F);
-            color: white;
         }
         
         .timeline-content {
-            flex: 1;
             background: #f8f9fa;
             border-radius: 20px;
             padding: 25px;
@@ -891,21 +857,11 @@
             }
             .day-weather { font-size: 0.8rem; }
             
-            /* 时间线优化 - 移动端隐藏竖线和时间标记 */
-            .timeline { 
-                padding-left: 0; 
-            }
-            .timeline::before { 
-                display: none;
-            }
+            /* 时间线 - 移动端模块铺满 */
             .timeline-item { 
                 display: block;
                 margin-bottom: 20px;
-                padding-left: 0;
                 width: 100%;
-            }
-            .time-marker { 
-                display: none;
             }
             
             /* 内容卡片 - 关键：铺满全宽 */
@@ -918,8 +874,8 @@
             /* 移动端时间标签样式 */
             .time-badge {
                 font-size: 0.7rem;
-                padding: 2px 8px;
-                margin-left: 6px;
+                padding: 3px 10px;
+                margin-right: 6px;
             }
             .timeline-header {
                 flex-wrap: wrap;
@@ -1178,10 +1134,9 @@
                     <div class="timeline">
                         <!-- 中午 - 市中心嗦粉 -->
                         <div class="timeline-item">
-                            <div class="time-marker afternoon">午</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🍜 市中心嗦粉 · 第一站<span class="time-badge afternoon">午</span></div>
+                                    <div class="timeline-title"><span class="time-badge afternoon">午</span>🍜 市中心嗦粉 · 第一站</div>
                                     <span class="must-go">不用跑柳北</span>
                                 </div>
                                 <p class="timeline-desc">到柳州第一件事当然是嗦粉！不用特意跑柳北，市中心就有多家口碑好店，到店后用大众点评找评分高的~</p>
@@ -1245,10 +1200,9 @@
                         
                         <!-- 下午 - 五星街逛吃 -->
                         <div class="timeline-item">
-                            <div class="time-marker afternoon">下</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🛍️ 五星步行街 · 逛吃消食<span class="time-badge afternoon">下</span></div>
+                                    <div class="timeline-title"><span class="time-badge afternoon">下</span>🛍️ 五星步行街 · 逛吃消食</div>
                                     <span class="must-go">市中心黄金地段</span>
                                 </div>
                                 <p class="timeline-desc">嗦完粉正好逛逛五星街，喝杯奶茶、买点酸野，消消食~ 下午悠闲时光~</p>
@@ -1294,10 +1248,9 @@
                         
                         <!-- 傍晚 - 马鞍山日落夜景 -->
                         <div class="timeline-item">
-                            <div class="time-marker afternoon">下</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🧗 马鞍山 · 日落+夜景<span class="time-badge afternoon">下</span></div>
+                                    <div class="timeline-title"><span class="time-badge afternoon">下</span>🧗 马鞍山 · 日落+夜景</div>
                                     <span class="must-go">必打卡机位</span>
                                 </div>
                                 <p class="timeline-desc">爬山约20分钟到山顶！4-5点开始爬，先看日落再等夜景，俯瞰整座柳州城！不想爬也有电梯直达~</p>
@@ -1311,10 +1264,9 @@
                         
                         <!-- 晚上 - 柳江音乐喷泉 -->
                         <div class="timeline-item">
-                            <div class="time-marker evening">夜</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🎵 柳江音乐喷泉 · 免费表演<span class="time-badge evening">夜</span></div>
+                                    <div class="timeline-title"><span class="time-badge evening">夜</span>🎵 柳江音乐喷泉 · 免费表演</div>
                                     <span class="must-go">亚洲最大水上舞台</span>
                                 </div>
                                 <p class="timeline-desc">从马鞍山下来步行10分钟到柳江边，看亚洲最大的水上音乐喷泉！随着音乐起舞，灯光璀璨，免费体验柳州夜景精华~</p>
@@ -1328,10 +1280,9 @@
                         
                         <!-- 晚上 - 茶麸洗头（第一晚最后一个项目） -->
                         <div class="timeline-item">
-                            <div class="time-marker evening">夜</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">💆 茶麸生姜洗头 · 第一晚收尾<span class="time-badge evening">夜</span></div>
+                                    <div class="timeline-title"><span class="time-badge evening">夜</span>💆 茶麸生姜洗头 · 第一晚收尾</div>
                                     <span class="must-go">柳州特色必体验</span>
                                 </div>
                                 <p class="timeline-desc">看完音乐喷泉，步行到五星街做一次茶麸生姜洗头放松身心！茶麸水按摩头皮超舒服，上生姜火辣辣通上天灵盖，超级爽！洗完整个人都放松了，完美结束第一天~</p>
@@ -1375,10 +1326,9 @@
                     <div class="timeline">
                         <!-- 早上 -->
                         <div class="timeline-item">
-                            <div class="time-marker morning">早</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🏪 青云民生市场 · 早餐<span class="time-badge morning">早</span></div>
+                                    <div class="timeline-title"><span class="time-badge morning">早</span>🏪 青云民生市场 · 早餐</div>
                                     <span class="must-go">本地烟火气</span>
                                 </div>
                                 <p class="timeline-desc">柳州最古老的菜市场！感受最地道的市井生活，顺便把早餐解决了~</p>
@@ -1432,10 +1382,9 @@
                         
                         <!-- 上午 -->
                         <div class="timeline-item">
-                            <div class="time-marker morning">上</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🏞️ 龙潭公园 · 桂林山水缩影<span class="time-badge morning">上</span></div>
+                                    <div class="timeline-title"><span class="time-badge morning">上</span>🏞️ 龙潭公园 · 桂林山水缩影</div>
                                     <span class="must-go">免费必去</span>
                                 </div>
                                 <p class="timeline-desc">湖水碧绿如翡翠，侗寨鼓楼倒映水中！风雨桥是整个景区的精华，随手一拍就是森系大片~</p>
@@ -1455,10 +1404,9 @@
                         
                         <!-- 中午 -->
                         <div class="timeline-item">
-                            <div class="time-marker afternoon">午</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🍲 铛佬牛杂火锅 · 央视认证<span class="time-badge afternoon">午</span></div>
+                                    <div class="timeline-title"><span class="time-badge afternoon">午</span>🍲 铛佬牛杂火锅 · 央视认证</div>
                                     <span class="must-go">上过CCTV · 柳州人yyds</span>
                                 </div>
                                 <p class="timeline-desc">上过CCTV的牛杂火锅！柳州十多家分店，牛杂新鲜现切，酸辣锅底超开胃，一周想吃8次！</p>
@@ -1508,10 +1456,9 @@
                         
                         <!-- 下午 -->
                         <div class="timeline-item">
-                            <div class="time-marker afternoon">下</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🏛️ 柳州工业博物馆<span class="time-badge afternoon">下</span></div>
+                                    <div class="timeline-title"><span class="time-badge afternoon">下</span>🏛️ 柳州工业博物馆</div>
                                     <span class="must-go">免费 · 室内空调</span>
                                 </div>
                                 <p class="timeline-desc">记录柳州作为广西工业重镇的发展历程！馆内有复古火车头等工业遗迹，拍照超有feel，夏天避暑好去处~</p>
@@ -1525,10 +1472,9 @@
                         
                         <!-- 傍晚 -->
                         <div class="timeline-item">
-                            <div class="time-marker evening">夜</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🏮 窑埠古镇 · 绝美夜景<span class="time-badge evening">夜</span></div>
+                                    <div class="timeline-title"><span class="time-badge evening">夜</span>🏮 窑埠古镇 · 绝美夜景</div>
                                     <span class="must-go">拍照圣地</span>
                                 </div>
                                 <p class="timeline-desc">夜幕降临后灯笼亮起，古风建筑倒映在柳江之上。漫步青石板路，感受柳州的浪漫夜色~</p>
@@ -1542,10 +1488,9 @@
                         
                         <!-- 夜宵 - 胜利烧烤城 -->
                         <div class="timeline-item">
-                            <div class="time-marker evening">夜</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🔥 胜利烧烤城 · 夜宵烧烤<span class="time-badge evening">夜</span></div>
+                                    <div class="timeline-title"><span class="time-badge evening">夜</span>🔥 胜利烧烤城 · 夜宵烧烤</div>
                                     <span class="must-go">柳州夜市扛把子</span>
                                 </div>
                                 <p class="timeline-desc">柳州超火的夜市烧烤城！烤生牛、烤鱼、烤串配啤酒，烟火气十足~ 是体验柳州夜生活的必去之地！</p>
@@ -1571,10 +1516,9 @@
                         
                         <!-- 夜宵 -->
                         <div class="timeline-item">
-                            <div class="time-marker evening">夜</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🍧 卢姐炒冰 · 夜宵甜品<span class="time-badge evening">夜</span></div>
+                                    <div class="timeline-title"><span class="time-badge evening">夜</span>🍧 卢姐炒冰 · 夜宵甜品</div>
                                     <span class="must-go">芒果冰超推荐</span>
                                 </div>
                                 <p class="timeline-desc">烧烤城吃完来一份炒冰解腻！芒果冰是招牌，芒果香甜弥漫口腔~ 完美收尾！</p>
@@ -1621,10 +1565,9 @@
                     <div class="timeline">
                         <!-- 早上 - 水上公交 -->
                         <div class="timeline-item">
-                            <div class="time-marker morning">早</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🚢 水上公交 · ¥3看柳州全景<span class="time-badge morning">早</span></div>
+                                    <div class="timeline-title"><span class="time-badge morning">早</span>🚢 水上公交 · ¥3看柳州全景</div>
                                     <span class="must-go">小红书爆火体验</span>
                                 </div>
                                 <p class="timeline-desc">3块钱坐船看柳州！从东堤码头到南车渡码头，沿途欣赏柳江两岸风光，拍照超美！推荐早上去人少~</p>
@@ -1643,10 +1586,9 @@
                         
                         <!-- 上午 -->
                         <div class="timeline-item">
-                            <div class="time-marker morning">上</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🛒 青云民生市场 · 最后补货+酸野<span class="time-badge morning">上</span></div>
+                                    <div class="timeline-title"><span class="time-badge morning">上</span>🛒 青云民生市场 · 最后补货+酸野</div>
                                     <span class="must-go">收尾必去</span>
                                 </div>
                                 <p class="timeline-desc">最后再去青云市场！补货没吃够的美食，顺便买点手信带走~ 别忘了买酸野带回家！</p>
@@ -1691,10 +1633,9 @@
                         
                         <!-- 中午 -->
                         <div class="timeline-item">
-                            <div class="time-marker afternoon">午</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🍗 上海家乡鸡 · 收尾美食<span class="time-badge afternoon">午</span></div>
+                                    <div class="timeline-title"><span class="time-badge afternoon">午</span>🍗 上海家乡鸡 · 收尾美食</div>
                                     <span class="must-go">网红炸鸡 · 乌拉拉同款</span>
                                 </div>
                                 <p class="timeline-desc">离开前最后一顿！趁热吃外酥里嫩，也可以打包带上高铁~</p>
@@ -1723,10 +1664,9 @@
                         
                         <!-- 返程 -->
                         <div class="timeline-item">
-                            <div class="time-marker afternoon">下</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🚄 柳州站 · 返程回家<span class="time-badge afternoon">下</span></div>
+                                    <div class="timeline-title"><span class="time-badge afternoon">下</span>🚄 柳州站 · 返程回家</div>
                                     <span class="must-go">下午6点高铁</span>
                                 </div>
                                 <p class="timeline-desc">前往柳州站（柳南区南站路6号），结束美好的柳州三天两夜之旅！</p>
