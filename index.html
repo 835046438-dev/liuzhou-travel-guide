@@ -611,17 +611,142 @@
             background: rgba(255,255,255,0.1);
         }
         
-        /* Responsive */
+        /* Mobile Responsive - 全面优化手机适配 */
         @media (max-width: 768px) {
-            .timeline::before { left: 15px; }
-            .timeline-item { gap: 20px; }
-            .time-marker { width: 36px; height: 36px; font-size: 0.7rem; }
-            .day-content { padding: 25px; }
-            .day-header { padding: 25px 30px; }
-            .section-title { font-size: 2rem; }
-            .cover h1 { font-size: 2.5rem; }
-            .cover-stats { gap: 20px; }
-            .stat-number { font-size: 2rem; }
+            /* 基础布局 */
+            body { font-size: 14px; }
+            .container { padding: 0 12px; }
+            
+            /* 封面优化 */
+            .cover { padding: 40px 15px 60px; }
+            .cover h1 { font-size: 2rem !important; line-height: 1.2; }
+            .cover h1 span { font-size: 0.9rem; }
+            .cover-badge { font-size: 0.8rem; padding: 8px 20px; }
+            .cover-stats { gap: 15px; }
+            .stat-number { font-size: 1.6rem; }
+            .stat-label { font-size: 0.7rem; }
+            .date-item { padding: 10px 15px; }
+            .date-item .day { font-size: 1.4rem; }
+            .date-item .label { font-size: 0.75rem; }
+            
+            /* Day主题标签 */
+            .day-theme { 
+                font-size: 0.75rem; 
+                line-height: 1.6;
+                padding: 8px 12px;
+                word-break: break-all;
+            }
+            
+            /* 时间线优化 */
+            .timeline { padding-left: 0; }
+            .timeline::before { left: 20px; }
+            .timeline-item { 
+                padding-left: 50px; 
+                margin-bottom: 20px;
+            }
+            .time-marker { 
+                width: 40px; 
+                height: 40px; 
+                font-size: 0.75rem;
+                left: 0;
+                top: 0;
+            }
+            
+            /* 内容卡片 */
+            .timeline-content { padding: 15px; }
+            .timeline-title { 
+                font-size: 1.1rem; 
+                line-height: 1.4;
+            }
+            .timeline-desc {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+            .must-go { 
+                font-size: 0.7rem; 
+                padding: 3px 8px;
+            }
+            
+            /* Day头部 */
+            .day-content { padding: 20px 15px; }
+            .day-header { padding: 20px; }
+            .day-header h2 { font-size: 1.3rem; }
+            .day-header p { font-size: 0.85rem; }
+            .day-weather { font-size: 0.8rem; }
+            
+            /* 店铺卡片 */
+            .shop-card { 
+                padding: 12px; 
+                margin-top: 12px;
+            }
+            .shop-name { 
+                font-size: 0.95rem; 
+                flex-wrap: wrap;
+            }
+            .shop-tags { 
+                flex-wrap: wrap; 
+                gap: 5px;
+            }
+            .shop-tag { 
+                font-size: 0.7rem; 
+                padding: 3px 8px;
+            }
+            .shop-must-try { 
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+            .rating-num { font-size: 0.9rem; }
+            .stars { font-size: 0.7rem; }
+            
+            /* 导航按钮 */
+            .timeline-content a {
+                padding: 6px 12px !important;
+                font-size: 0.8rem !important;
+            }
+            
+            /* 美食卡片 */
+            .food-grid { 
+                grid-template-columns: 1fr; 
+                gap: 12px;
+            }
+            .food-card { 
+                padding: 15px; 
+                flex-direction: column;
+            }
+            .food-card h4 { font-size: 1rem; }
+            .food-card p { font-size: 0.85rem; }
+            
+            /* 必做清单 */
+            .checklist li {
+                font-size: 0.9rem;
+                padding: 10px 15px 10px 40px;
+            }
+            .checklist li::before { 
+                width: 22px; 
+                height: 22px;
+                top: 8px;
+            }
+            
+            /* 底部 */
+            .footer { padding: 30px 15px; }
+            .section-title { font-size: 1.6rem; }
+            
+            /* 地图导航按钮 */
+            .map-nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .map-nav a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+        /* 超小屏幕优化 */
+        @media (max-width: 400px) {
+            .cover h1 { font-size: 1.7rem !important; }
+            .day-theme { font-size: 0.7rem; }
+            .timeline-title { font-size: 1rem; }
         }
         
         /* Print */
