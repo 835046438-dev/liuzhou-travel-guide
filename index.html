@@ -44,6 +44,30 @@
             overflow: hidden;
         }
         
+        /* 装饰性插画元素 */
+        .cover-deco {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.15;
+            font-size: 120px;
+        }
+        
+        .cover-deco-1 { top: 10%; left: 5%; transform: rotate(-15deg); }
+        .cover-deco-2 { top: 15%; right: 8%; transform: rotate(20deg); }
+        .cover-deco-3 { bottom: 20%; left: 10%; transform: rotate(-10deg); font-size: 80px; }
+        .cover-deco-4 { bottom: 15%; right: 5%; transform: rotate(15deg); font-size: 100px; }
+        
+        /* 柳州山水装饰线 */
+        .cover-mountain {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,60 C200,100 400,20 600,60 C800,100 1000,20 1200,60 L1200,120 L0,120 Z' fill='rgba(255,255,255,0.1)'/%3E%3Cpath d='M0,80 C300,40 600,100 900,60 C1050,40 1150,70 1200,60 L1200,120 L0,120 Z' fill='rgba(255,255,255,0.08)'/%3E%3C/svg%3E") no-repeat bottom;
+            background-size: cover;
+        }
+        
         .cover::before {
             content: '';
             position: absolute;
@@ -142,13 +166,34 @@
         }
         
         .stat-number {
-            font-size: 2.2rem;
-            font-weight: 800;
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            line-height: 1.2;
         }
         
         .stat-label {
-            font-size: 0.8rem;
-            opacity: 0.85;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.85);
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            margin-top: 4px;
+        }
+        
+        .stat {
+            text-align: center;
+            color: white;
+        }
+        
+        .stat-divider {
+            width: 2px;
+            height: 50px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.6), rgba(255,255,255,0.1));
+            align-self: center;
+            border-radius: 2px;
+            box-shadow: 0 0 8px rgba(255,255,255,0.3);
         }
         
         .scroll-hint {
@@ -269,21 +314,9 @@
             position: relative;
         }
         
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 20px;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(to bottom, var(--primary), var(--secondary), var(--accent));
-            border-radius: 3px;
-        }
-        
         .timeline-item {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 35px;
+            display: block;
+            margin-bottom: 25px;
             position: relative;
         }
         
@@ -291,27 +324,31 @@
             margin-bottom: 0;
         }
         
-        .time-marker {
-            flex-shrink: 0;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
+        /* 时间标签 - 早午晚颜色标识（标题旁） */
+        .time-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 15px;
             font-size: 0.8rem;
-            position: relative;
-            z-index: 1;
+            font-weight: 700;
+            margin-right: 10px;
+            vertical-align: middle;
+            color: white;
+            letter-spacing: 1px;
         }
         
-        .time-marker.morning { background: linear-gradient(135deg, #FF4757, #FF6B81); }
-        .time-marker.afternoon { background: linear-gradient(135deg, #FFA502, #FFBE76); }
-        .time-marker.evening { background: linear-gradient(135deg, #2ED573, #7BED9F); }
+        .time-badge.morning {
+            background: linear-gradient(135deg, #FF4757, #FF6B81);
+        }
+        
+        .time-badge.afternoon {
+            background: linear-gradient(135deg, #FFA502, #FFBE76);
+        }
+        .time-badge.evening {
+            background: linear-gradient(135deg, #2ED573, #7BED9F);
+        }
         
         .timeline-content {
-            flex: 1;
             background: #f8f9fa;
             border-radius: 20px;
             padding: 25px;
@@ -561,47 +598,208 @@
             font-weight: bold;
         }
         
-        /* Share Section */
+        /* Share Section - 真实美食图片拼图风格 */
         .share-section {
-            background: linear-gradient(135deg, #FF4757 0%, #FF6B81 100%);
-            padding: 40px 20px;
+            background: linear-gradient(135deg, #FF4757 0%, #FFA502 50%, #FF6B81 100%);
+            padding: 50px 20px;
             text-align: center;
             color: white;
+            position: relative;
+            overflow: hidden;
         }
         
         .share-section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 12px;
+            font-size: 1.6rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: relative;
+            white-space: nowrap;
         }
         
-        .share-section p {
-            font-size: 1rem;
-            opacity: 0.9;
-            margin-bottom: 20px;
+        /* 美食拼图网格 */
+        .food-mosaic {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            max-width: 420px;
+            margin: 0 auto 25px;
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
         
-        .share-qr {
-            display: none;
+        .mosaic-item {
+            border-radius: 0;
+            overflow: hidden;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .mosaic-item:hover {
+            transform: scale(1.05);
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+        
+        /* 大卡片（跨2列） */
+        .mosaic-item.span2 {
+            grid-column: span 2;
+            aspect-ratio: 2;
+        }
+        
+        /* 食物名称标签 */
+        .mosaic-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 15px 8px 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+        
+        /* 图片加载占位背景色 */
+        .mosaic-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #2a2a3e, #1a1a2e);
+            z-index: -1;
         }
         
         .share-text {
-            margin-top: 20px;
-            font-size: 1.1rem;
             font-size: 0.9rem;
-            opacity: 0.8;
+            opacity: 0.7;
+            letter-spacing: 2px;
+            margin-top: 15px;
+        }
+        
+        /* 分享区域顶部吸引元素 */
+        .share-header {
+            margin-bottom: 30px;
+        }
+        
+        .share-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.35);
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .share-stats {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .share-stat {
+            text-align: center;
+        }
+        
+        .share-stat-num {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #FFA502;
+            line-height: 1.2;
+        }
+        
+        .share-stat-label {
+            display: block;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.7);
+            margin-top: 4px;
+        }
+        
+        .share-stat-divider {
+            width: 1px;
+            height: 35px;
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .share-quote {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.9);
+            font-style: italic;
+            margin-top: 15px;
+            padding: 10px 20px;
+            border-left: 3px solid rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.1);
+            border-radius: 0 10px 10px 0;
+            display: inline-block;
         }
         
         /* Footer */
         .footer {
-            background: var(--dark);
+            background: #1a1a2e;
             color: white;
             padding: 40px 20px;
             text-align: center;
         }
         
-        .footer p {
-            opacity: 0.7;
+        .footer .footer-title {
+            font-size: 1.1rem;
+            color: white;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .footer .footer-subtitle {
             font-size: 0.9rem;
+            margin-bottom: 20px;
+            opacity: 0.7;
+        }
+        
+        .footer .footer-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+        
+        .footer .footer-tag {
+            background: rgba(255,255,255,0.1);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .footer .footer-divider {
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #FF4757, #FFA502);
+            margin: 20px auto;
+            border-radius: 3px;
+        }
+        
+        .footer .footer-copyright {
+            font-size: 0.8rem;
+            opacity: 0.5;
+            margin-top: 15px;
         }
         
         /* Decorative */
@@ -615,19 +813,42 @@
         @media (max-width: 768px) {
             /* 基础布局 */
             body { font-size: 14px; }
-            .container { padding: 0 12px; }
+            .container { 
+                padding: 0; 
+                max-width: 100%;
+            }
+            
+            /* 内容区域全宽 */
+            .content-section {
+                padding: 40px 0;
+            }
+            
+            /* Day卡片全宽 */
+            .day-card {
+                border-radius: 0;
+                margin-bottom: 30px;
+            }
             
             /* 封面优化 */
             .cover { padding: 40px 15px 60px; }
             .cover h1 { font-size: 2rem !important; line-height: 1.2; }
             .cover h1 span { font-size: 0.9rem; }
             .cover-badge { font-size: 0.8rem; padding: 8px 20px; }
-            .cover-stats { gap: 15px; }
-            .stat-number { font-size: 1.6rem; }
-            .stat-label { font-size: 0.7rem; }
+            .cover-stats { gap: 10px; }
+            .stat { padding: 0; }
+            .stat-number { font-size: 2.2rem; }
+            .stat-label { font-size: 0.8rem; letter-spacing: 0.5px; }
             .date-item { padding: 10px 15px; }
             .date-item .day { font-size: 1.4rem; }
             .date-item .label { font-size: 0.75rem; }
+            
+            /* Day头部 */
+            .day-header { 
+                padding: 20px 15px; 
+                border-radius: 0;
+            }
+            .day-header h2 { font-size: 1.3rem; }
+            .day-header p { font-size: 0.85rem; }
             
             /* Day主题标签 */
             .day-theme { 
@@ -636,27 +857,36 @@
                 padding: 8px 12px;
                 word-break: break-all;
             }
+            .day-weather { font-size: 0.8rem; }
             
-            /* 时间线优化 */
-            .timeline { padding-left: 0; }
-            .timeline::before { left: 20px; }
+            /* 时间线 - 移动端模块铺满 */
             .timeline-item { 
-                padding-left: 50px; 
+                display: block;
                 margin-bottom: 20px;
-            }
-            .time-marker { 
-                width: 40px; 
-                height: 40px; 
-                font-size: 0.75rem;
-                left: 0;
-                top: 0;
+                width: 100%;
             }
             
-            /* 内容卡片 */
-            .timeline-content { padding: 15px; }
+            /* 内容卡片 - 关键：铺满全宽 */
+            .timeline-content { 
+                width: 100%;
+                padding: 18px; 
+                border-radius: 16px;
+            }
+            
+            /* 移动端时间标签样式 */
+            .time-badge {
+                font-size: 0.7rem;
+                padding: 3px 10px;
+                margin-right: 6px;
+            }
+            .timeline-header {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
             .timeline-title { 
                 font-size: 1.1rem; 
                 line-height: 1.4;
+                word-break: break-word;
             }
             .timeline-desc {
                 font-size: 0.9rem;
@@ -665,23 +895,29 @@
             .must-go { 
                 font-size: 0.7rem; 
                 padding: 3px 8px;
+                flex-shrink: 0;
             }
             
-            /* Day头部 */
-            .day-content { padding: 20px 15px; }
-            .day-header { padding: 20px; }
-            .day-header h2 { font-size: 1.3rem; }
-            .day-header p { font-size: 0.85rem; }
-            .day-weather { font-size: 0.8rem; }
+            /* Day内容区 */
+            .day-content { 
+                padding: 15px 12px; 
+            }
             
-            /* 店铺卡片 */
+            /* 店铺卡片 - 全宽 */
             .shop-card { 
-                padding: 12px; 
+                padding: 15px; 
                 margin-top: 12px;
+                border-radius: 14px;
+                width: 100%;
+            }
+            .shop-header {
+                flex-wrap: wrap;
+                gap: 8px;
             }
             .shop-name { 
                 font-size: 0.95rem; 
                 flex-wrap: wrap;
+                word-break: break-word;
             }
             .shop-tags { 
                 flex-wrap: wrap; 
@@ -705,16 +941,27 @@
             }
             
             /* 美食卡片 */
-            .food-grid { 
-                grid-template-columns: 1fr; 
+            .food-gallery { 
+                grid-template-columns: repeat(2, 1fr); 
                 gap: 12px;
+                padding: 0 12px;
             }
             .food-card { 
-                padding: 15px; 
-                flex-direction: column;
+                border-radius: 16px;
             }
-            .food-card h4 { font-size: 1rem; }
-            .food-card p { font-size: 0.85rem; }
+            .food-emoji {
+                height: 90px;
+                font-size: 3rem;
+            }
+            .food-info {
+                padding: 15px;
+            }
+            .food-card h4 { font-size: 0.95rem; }
+            .food-card p { font-size: 0.8rem; }
+            .food-badge { 
+                font-size: 0.7rem; 
+                padding: 4px 10px;
+            }
             
             /* 必做清单 */
             .checklist li {
@@ -727,9 +974,69 @@
                 top: 8px;
             }
             
+            /* Tips区域 */
+            .tips-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                padding: 0 12px;
+            }
+            .tip-card {
+                padding: 20px;
+            }
+            
             /* 底部 */
             .footer { padding: 30px 15px; }
-            .section-title { font-size: 1.6rem; }
+            .section-header {
+                padding: 0 15px;
+            }
+            .section-title { font-size: 1.5rem; }
+            .section-subtitle { font-size: 0.9rem; }
+            
+            /* 分享区域 */
+            .share-section {
+                padding: 40px 15px;
+            }
+            .share-section h2 {
+                font-size: 1.1rem;
+                margin-bottom: 20px;
+                white-space: nowrap;
+            }
+            .food-mosaic {
+                gap: 6px;
+                max-width: 340px;
+            }
+            .mosaic-item {
+                border-radius: 12px;
+                font-size: 1.8rem;
+            }
+            .mosaic-item.span2 {
+                font-size: 2.5rem;
+            }
+            .mosaic-label {
+                font-size: 0.55rem;
+            }
+            .share-stats {
+                gap: 12px;
+                margin: 15px 0;
+            }
+            .share-stat-num {
+                font-size: 1.4rem;
+            }
+            .share-stat-label {
+                font-size: 0.65rem;
+            }
+            .share-stat-divider {
+                height: 28px;
+            }
+            .share-quote {
+                font-size: 0.85rem;
+                padding: 8px 15px;
+                margin-top: 10px;
+            }
+            .share-badge {
+                font-size: 0.7rem;
+                padding: 5px 14px;
+            }
             
             /* 地图导航按钮 */
             .map-nav {
@@ -760,6 +1067,13 @@
 <body>
     <!-- Cover -->
     <section class="cover">
+        <!-- 装饰性插画 -->
+        <span class="cover-deco cover-deco-1">🏔️</span>
+        <span class="cover-deco cover-deco-2">🌉</span>
+        <span class="cover-deco cover-deco-3">🍜</span>
+        <span class="cover-deco cover-deco-4">🚄</span>
+        <div class="cover-mountain"></div>
+        
         <div class="cover-content">
             <div class="cover-badge">📍 广西 · 柳州</div>
             <h1>
@@ -785,15 +1099,17 @@
             <div class="cover-stats">
                 <div class="stat">
                     <div class="stat-number">9</div>
-                    <div class="stat-label">种美食类型</div>
+                    <div class="stat-label">种必吃美食</div>
                 </div>
+                <div class="stat-divider"></div>
                 <div class="stat">
                     <div class="stat-number">6</div>
-                    <div class="stat-label">必玩景点</div>
+                    <div class="stat-label">个打卡景点</div>
                 </div>
+                <div class="stat-divider"></div>
                 <div class="stat">
                     <div class="stat-number">3</div>
-                    <div class="stat-label">天轻松游</div>
+                    <div class="stat-label">天慢游记</div>
                 </div>
             </div>
         </div>
@@ -820,10 +1136,9 @@
                     <div class="timeline">
                         <!-- 中午 - 市中心嗦粉 -->
                         <div class="timeline-item">
-                            <div class="time-marker afternoon">午</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🍜 市中心嗦粉 · 第一站</div>
+                                    <div class="timeline-title"><span class="time-badge afternoon">午</span>🍜 市中心嗦粉 · 第一站</div>
                                     <span class="must-go">不用跑柳北</span>
                                 </div>
                                 <p class="timeline-desc">到柳州第一件事当然是嗦粉！不用特意跑柳北，市中心就有多家口碑好店，到店后用大众点评找评分高的~</p>
@@ -887,10 +1202,9 @@
                         
                         <!-- 下午 - 五星街逛吃 -->
                         <div class="timeline-item">
-                            <div class="time-marker afternoon">下</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🛍️ 五星步行街 · 逛吃消食</div>
+                                    <div class="timeline-title"><span class="time-badge afternoon">下</span>🛍️ 五星步行街 · 逛吃消食</div>
                                     <span class="must-go">市中心黄金地段</span>
                                 </div>
                                 <p class="timeline-desc">嗦完粉正好逛逛五星街，喝杯奶茶、买点酸野，消消食~ 下午悠闲时光~</p>
@@ -936,10 +1250,9 @@
                         
                         <!-- 傍晚 - 马鞍山日落夜景 -->
                         <div class="timeline-item">
-                            <div class="time-marker afternoon">下</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🧗 马鞍山 · 日落+夜景</div>
+                                    <div class="timeline-title"><span class="time-badge afternoon">下</span>🧗 马鞍山 · 日落+夜景</div>
                                     <span class="must-go">必打卡机位</span>
                                 </div>
                                 <p class="timeline-desc">爬山约20分钟到山顶！4-5点开始爬，先看日落再等夜景，俯瞰整座柳州城！不想爬也有电梯直达~</p>
@@ -953,10 +1266,9 @@
                         
                         <!-- 晚上 - 柳江音乐喷泉 -->
                         <div class="timeline-item">
-                            <div class="time-marker evening">夜</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🎵 柳江音乐喷泉 · 免费表演</div>
+                                    <div class="timeline-title"><span class="time-badge evening">夜</span>🎵 柳江音乐喷泉 · 免费表演</div>
                                     <span class="must-go">亚洲最大水上舞台</span>
                                 </div>
                                 <p class="timeline-desc">从马鞍山下来步行10分钟到柳江边，看亚洲最大的水上音乐喷泉！随着音乐起舞，灯光璀璨，免费体验柳州夜景精华~</p>
@@ -970,10 +1282,9 @@
                         
                         <!-- 晚上 - 茶麸洗头（第一晚最后一个项目） -->
                         <div class="timeline-item">
-                            <div class="time-marker evening">夜</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">💆 茶麸生姜洗头 · 第一晚收尾</div>
+                                    <div class="timeline-title"><span class="time-badge evening">夜</span>💆 茶麸生姜洗头 · 第一晚收尾</div>
                                     <span class="must-go">柳州特色必体验</span>
                                 </div>
                                 <p class="timeline-desc">看完音乐喷泉，步行到五星街做一次茶麸生姜洗头放松身心！茶麸水按摩头皮超舒服，上生姜火辣辣通上天灵盖，超级爽！洗完整个人都放松了，完美结束第一天~</p>
@@ -1017,10 +1328,9 @@
                     <div class="timeline">
                         <!-- 早上 -->
                         <div class="timeline-item">
-                            <div class="time-marker morning">早</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🏪 青云民生市场 · 早餐</div>
+                                    <div class="timeline-title"><span class="time-badge morning">早</span>🏪 青云民生市场 · 早餐</div>
                                     <span class="must-go">本地烟火气</span>
                                 </div>
                                 <p class="timeline-desc">柳州最古老的菜市场！感受最地道的市井生活，顺便把早餐解决了~</p>
@@ -1074,10 +1384,9 @@
                         
                         <!-- 上午 -->
                         <div class="timeline-item">
-                            <div class="time-marker morning">上</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🏞️ 龙潭公园 · 桂林山水缩影</div>
+                                    <div class="timeline-title"><span class="time-badge morning">上</span>🏞️ 龙潭公园 · 桂林山水缩影</div>
                                     <span class="must-go">免费必去</span>
                                 </div>
                                 <p class="timeline-desc">湖水碧绿如翡翠，侗寨鼓楼倒映水中！风雨桥是整个景区的精华，随手一拍就是森系大片~</p>
@@ -1097,10 +1406,9 @@
                         
                         <!-- 中午 -->
                         <div class="timeline-item">
-                            <div class="time-marker afternoon">午</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🍲 铛佬牛杂火锅 · 央视认证</div>
+                                    <div class="timeline-title"><span class="time-badge afternoon">午</span>🍲 铛佬牛杂火锅 · 央视认证</div>
                                     <span class="must-go">上过CCTV · 柳州人yyds</span>
                                 </div>
                                 <p class="timeline-desc">上过CCTV的牛杂火锅！柳州十多家分店，牛杂新鲜现切，酸辣锅底超开胃，一周想吃8次！</p>
@@ -1150,10 +1458,9 @@
                         
                         <!-- 下午 -->
                         <div class="timeline-item">
-                            <div class="time-marker afternoon">下</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🏛️ 柳州工业博物馆</div>
+                                    <div class="timeline-title"><span class="time-badge afternoon">下</span>🏛️ 柳州工业博物馆</div>
                                     <span class="must-go">免费 · 室内空调</span>
                                 </div>
                                 <p class="timeline-desc">记录柳州作为广西工业重镇的发展历程！馆内有复古火车头等工业遗迹，拍照超有feel，夏天避暑好去处~</p>
@@ -1167,10 +1474,9 @@
                         
                         <!-- 傍晚 -->
                         <div class="timeline-item">
-                            <div class="time-marker evening">夜</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🏮 窑埠古镇 · 绝美夜景</div>
+                                    <div class="timeline-title"><span class="time-badge evening">夜</span>🏮 窑埠古镇 · 绝美夜景</div>
                                     <span class="must-go">拍照圣地</span>
                                 </div>
                                 <p class="timeline-desc">夜幕降临后灯笼亮起，古风建筑倒映在柳江之上。漫步青石板路，感受柳州的浪漫夜色~</p>
@@ -1184,10 +1490,9 @@
                         
                         <!-- 夜宵 - 胜利烧烤城 -->
                         <div class="timeline-item">
-                            <div class="time-marker evening">夜</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🔥 胜利烧烤城 · 夜宵烧烤</div>
+                                    <div class="timeline-title"><span class="time-badge evening">夜</span>🔥 胜利烧烤城 · 夜宵烧烤</div>
                                     <span class="must-go">柳州夜市扛把子</span>
                                 </div>
                                 <p class="timeline-desc">柳州超火的夜市烧烤城！烤生牛、烤鱼、烤串配啤酒，烟火气十足~ 是体验柳州夜生活的必去之地！</p>
@@ -1213,10 +1518,9 @@
                         
                         <!-- 夜宵 -->
                         <div class="timeline-item">
-                            <div class="time-marker evening">夜</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🍧 卢姐炒冰 · 夜宵甜品</div>
+                                    <div class="timeline-title"><span class="time-badge evening">夜</span>🍧 卢姐炒冰 · 夜宵甜品</div>
                                     <span class="must-go">芒果冰超推荐</span>
                                 </div>
                                 <p class="timeline-desc">烧烤城吃完来一份炒冰解腻！芒果冰是招牌，芒果香甜弥漫口腔~ 完美收尾！</p>
@@ -1263,10 +1567,9 @@
                     <div class="timeline">
                         <!-- 早上 - 水上公交 -->
                         <div class="timeline-item">
-                            <div class="time-marker morning">早</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🚢 水上公交 · ¥3看柳州全景</div>
+                                    <div class="timeline-title"><span class="time-badge morning">早</span>🚢 水上公交 · ¥3看柳州全景</div>
                                     <span class="must-go">小红书爆火体验</span>
                                 </div>
                                 <p class="timeline-desc">3块钱坐船看柳州！从东堤码头到南车渡码头，沿途欣赏柳江两岸风光，拍照超美！推荐早上去人少~</p>
@@ -1285,10 +1588,9 @@
                         
                         <!-- 上午 -->
                         <div class="timeline-item">
-                            <div class="time-marker morning">上</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🛒 青云民生市场 · 最后补货+酸野</div>
+                                    <div class="timeline-title"><span class="time-badge morning">上</span>🛒 青云民生市场 · 最后补货+酸野</div>
                                     <span class="must-go">收尾必去</span>
                                 </div>
                                 <p class="timeline-desc">最后再去青云市场！补货没吃够的美食，顺便买点手信带走~ 别忘了买酸野带回家！</p>
@@ -1333,10 +1635,9 @@
                         
                         <!-- 中午 -->
                         <div class="timeline-item">
-                            <div class="time-marker afternoon">午</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🍗 上海家乡鸡 · 收尾美食</div>
+                                    <div class="timeline-title"><span class="time-badge afternoon">午</span>🍗 上海家乡鸡 · 收尾美食</div>
                                     <span class="must-go">网红炸鸡 · 乌拉拉同款</span>
                                 </div>
                                 <p class="timeline-desc">离开前最后一顿！趁热吃外酥里嫩，也可以打包带上高铁~</p>
@@ -1365,10 +1666,9 @@
                         
                         <!-- 返程 -->
                         <div class="timeline-item">
-                            <div class="time-marker afternoon">下</div>
                             <div class="timeline-content">
                                 <div class="timeline-header">
-                                    <div class="timeline-title">🚄 柳州站 · 返程回家</div>
+                                    <div class="timeline-title"><span class="time-badge afternoon">下</span>🚄 柳州站 · 返程回家</div>
                                     <span class="must-go">下午6点高铁</span>
                                 </div>
                                 <p class="timeline-desc">前往柳州站（柳南区南站路6号），结束美好的柳州三天两夜之旅！</p>
@@ -1571,34 +1871,72 @@
     <!-- Share -->
     <section class="share-section">
         <div class="container">
-            <h2>🌶️ 柳州，一座来了就舍不得走的城市</h2>
-            <p style="font-size: 1.1rem;">慢慢逛、慢慢吃、慢慢感受——这才是柳州正确的打开方式</p>
+            <!-- 顶部吸引元素 -->
+            <div class="share-header">
+                <div class="share-badge">🔥 小红书10w+收藏</div>
+                <h2>🌶️ 柳州，一座来了就舍不得走的城市</h2>
+                <p class="share-quote">"三天两夜，人均800，吃遍整座城"</p>
+            </div>
             
-            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
-                <div style="background: rgba(255,255,255,0.25); padding: 12px 20px; border-radius: 12px; display: flex; align-items: center; gap: 8px; font-size: 0.95rem;">
-                    <span style="font-size: 1.3rem;">💡</span>
-                    <span>点击店铺卡片<br>跳转百度地图导航</span>
+            <!-- 柳州美食与风景真实图片拼图 -->
+            <div class="food-mosaic">
+                <!-- 第一行：螺蛳粉(跨2列) + 马鞍山夜景 -->
+                <div class="mosaic-item span2" style="background-image: url('https://gd-cms.dancf.com/gd-cms/xi19e5/0/36554bd5-51f1-4da0-9a92-df1c9adf48172640.jpeg');">
+                    <span class="mosaic-label">🍜 柳州螺蛳粉</span>
                 </div>
-                <div style="background: rgba(255,255,255,0.25); padding: 12px 20px; border-radius: 12px; display: flex; align-items: center; gap: 8px; font-size: 0.95rem;">
-                    <span style="font-size: 1.3rem;">📸</span>
-                    <span>长按保存攻略<br>分享给朋友出发</span>
+                <div class="mosaic-item" style="background-image: url('https://dimg04.c-ctrip.com/images/0102i1200093kwbwj4278_W_640_0_Q90.jpg?proc=autoorient');">
+                    <span class="mosaic-label">🌃 马鞍山夜景</span>
+                </div>
+                <!-- 第二行：牛杂火锅 + 窑埠古镇 + 龙潭公园 -->
+                <div class="mosaic-item" style="background-image: url('https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2023%2F0713%2Fd138598aj00rxpttl00a1c000u00190m.jpg&thumbnail=660x2147483647&quality=80&type=jpg');">
+                    <span class="mosaic-label">🍲 牛杂火锅</span>
+                </div>
+                <div class="mosaic-item" style="background-image: url('https://dimg04.c-ctrip.com/images/0104j1200093kwmmlA823_W_640_0_Q90.jpg?proc=autoorient');">
+                    <span class="mosaic-label">🏮 窑埠古镇</span>
+                </div>
+                <div class="mosaic-item" style="background-image: url('https://dimg04.c-ctrip.com/images/0103f1200093kwf2eC41C_W_640_0_Q90.jpg?proc=autoorient');">
+                    <span class="mosaic-label">🏞️ 山顶俯瞰</span>
+                </div>
+                <!-- 第三行：柳江夜景(跨2列) + 音乐喷泉 -->
+                <div class="mosaic-item span2" style="background-image: url('https://dimg04.c-ctrip.com/images/010591200093kvxcm45D9_W_640_0_Q90.jpg?proc=autoorient');">
+                    <span class="mosaic-label">🌉 柳江璀璨夜色</span>
+                </div>
+                <div class="mosaic-item" style="background-image: url('https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2023%2F0713%2F1c105561j00rxpttl008jc000u00190m.jpg&thumbnail=660x2147483647&quality=80&type=jpg');">
+                    <span class="mosaic-label">🍮 冰渣豆花</span>
+                </div>
+                <!-- 第四行：窑埠古镇街景 + 城市夜景 + 木薯羹（填满）-->
+                <div class="mosaic-item" style="background-image: url('https://dimg04.c-ctrip.com/images/0103n1200093kwmmk5C92_W_640_0_Q90.jpg?proc=autoorient');">
+                    <span class="mosaic-label">🏘️ 古镇街景</span>
+                </div>
+                <div class="mosaic-item" style="background-image: url('https://dimg04.c-ctrip.com/images/010681200093kvz8u1B89_W_640_0_Q90.jpg?proc=autoorient');">
+                    <span class="mosaic-label">✨ 城市灯光</span>
+                </div>
+                <div class="mosaic-item" style="background-image: url('https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2023%2F0713%2F2c9a5245j00rxpttk0035c000u00190m.jpg&thumbnail=660x2147483647&quality=80&type=jpg');">
+                    <span class="mosaic-label">🍠 张飞木薯羹</span>
                 </div>
             </div>
             
-            <p class="share-text">祝你旅途愉快！🌶️ 期待你的朋友圈刷屏~</p>
+            <p class="share-text">祝你旅途愉快 · 期待你的朋友圈刷屏~</p>
         </div>
     </section>
     
     <!-- Footer -->
     <footer class="footer">
-        <p style="font-size: 1.1rem; margin-bottom: 15px;">📍 广西 · 柳州 | 🗓️ 2026.5.15-17</p>
-        <p style="margin-bottom: 20px; line-height: 1.8;">
-            🔥 柳州螺蛳粉 | 🍲 牛杂火锅 | 🏞️ 山水画卷<br>
-            这是一份让你"来了就不想走"的柳州攻略！
-        </p>
-        <p style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2);">
-            ✨ 逛吃逛吃慢游记 | 躺平式旅游体验
-        </p>
+        <div class="footer-title">📍 广西 · 柳州 | 🗓️ 2026.5.15-17</div>
+        <div class="footer-subtitle">
+            🔥 柳州螺蛳粉 | 🍲 牛杂火锅 | 🏞️ 山水画卷
+        </div>
+        
+        <div class="footer-tags">
+            <span class="footer-tag">🛍️ 五星街</span>
+            <span class="footer-tag">🏞️ 龙潭公园</span>
+            <span class="footer-tag">🏮 窑埠古镇</span>
+            <span class="footer-tag">🚢 水上公交</span>
+        </div>
+        
+        <div class="footer-divider"></div>
+        
+        <div class="footer-copyright">✨ 逛吃逛吃慢游记 | 躺平式旅游体验</div>
     </footer>
     
     <!-- Smooth Scroll -->
